@@ -69,7 +69,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #333;
+            color: #23282a;
             font-size: 28px;
             transform: translate(-50%, -50%);
             border-radius: 20px;
@@ -96,6 +96,47 @@
             background: #d9eccb;
             transform: translate(-50%, -50%) rotate(-3deg);
         }
+        .con04 {
+            position: relative;
+            height: 1200px;
+            overflow: hidden;
+        }
+        .con04 .circle {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: block;
+            width: 2500px;
+            height: 2500px;
+            border-radius: 50%;
+            background: #fff;
+        }
+        .con04 .textBox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #23282a;
+            text-transform: uppercase;
+            text-align: center;
+            z-index: 2;
+        }
+        .con04 .textBox p {
+            font-size: 64px;
+            font-weight: bold;
+            letter-spacing: -5px;
+            line-height: 1;
+        }
+        .con05 {
+            background: #fff;
+        }
+        .con05 .title {
+            font-size: 140px;
+            text-transform: uppercase;
+            color: #888;
+            line-height: 1;
+        }
     </style>
     <body>
         <div class="wrap">
@@ -117,6 +158,20 @@
                 <span class="c">Card3</span>
                 <span class="d">Card4</span>
                 <span class="e">Card5</span>
+            </section>
+            <section class="con04">
+                <span class="circle"></span>
+                <div class="textBox">
+                    <p>
+                        our releases<br />
+                        get a feeling<br />
+                        for the latest<br />
+                        selected sound
+                    </p>
+                </div>
+            </section>
+            <section class="con05">
+                <h2 class="title">ScrollTrigger</h2>
             </section>
         </div>
     </body>
@@ -170,6 +225,44 @@
                 .fromTo(".con03 span.c", { y: "400%" }, { y: "0" }, 1.6)
                 .fromTo(".con03 span.d", { y: "400%" }, { y: "0" }, 1.8)
                 .fromTo(".con03 span.e", { y: "400%" }, { y: "0" }, 2);
+
+            // con04 - circle
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".con04",
+                    start: "0% 50%",
+                    end: "30% 0%",
+                    scrub: 1,
+                    // markers: true,
+                },
+            }).fromTo(
+                ".circle",
+                {
+                    width: "0",
+                    height: "0",
+                    duration: "10",
+                    ease: "elastic",
+                    top: "3%",
+                    opacity: "0",
+                },
+                { width: "2500px", height: "2500px", opacity: "1", top: "30%" },
+                0
+            );
+
+            // con04 - textBox
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".con04 .textBox",
+                    start: "0% 80%",
+                    end: "100% 80%",
+                    scrub: 1,
+                    // markers: true,
+                },
+            }).fromTo(
+                ".textBox",
+                { top: "50%", duration: "5", ease: "elastic", opacity: "0" },
+                { duration: "5", ease: "none", opacity: "1", top: "40%" }
+            );
         });
     </script>
 </html>
